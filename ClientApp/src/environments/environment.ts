@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
   ApiBaseUrl : "http://localhost:5000/",
-  OraganizationCode :"CES",
-  OraganizationUrl :"https://cesltd.com/"  
+  OraganizationCode :"TechiNuthan",
+  OraganizationUrl :"https://techinuthan.blogspot.com/"  
 };
 
 /*
