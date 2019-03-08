@@ -1,0 +1,38 @@
+<div class="jumbtron">
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" data-toggle="tooltip" title="Go to Dashboard"  routerLink="/dashboard">
+          <img src="assets/img/ces_logo.png" width="30" height="30" class="d-inline-block align-top"
+            alt="CES Employee Forum">
+          <strong class="logoTitle">Employee Forum</strong>
+        </a>    
+        <form class="form-inline my-2 my-lg-0">
+          <p class="fontSize16px mr-10 mt-15 "><span class="colorSilver">Welcome </span><a data-toggle="tooltip" title="Employee Details" routerLink="/empdetail/{{employee.EmployeeId}}" class="logoTitle"><strong>{{employee.UserName | uppercase}}</strong></a><br>        
+          </p>
+          <a class="btn btn-info-white my-2 my-sm-0 btnLogout" (click)="logout()">Logout</a>    
+        </form>
+      </nav>   
+      <br>
+      <br> 
+  <div class="containerfluid width95Percent marginAuto">    
+    <div class="row display-block clear-both">
+      <div class="col-md-8 m-auto">        
+        <div class="media" *ngFor="let post of posts">
+          <div class="media-body border-bottom">
+            <h4 class="media-heading mt-10"><a href="#"
+              routerLink='/postdetail/{{post.PostId}}'>{{post.Title | titlecase}}</a></h4>
+            <p class="text-right">By {{post.FirstName | titlecase}}</p>
+            <p>{{post.Description}}</p>
+            <ul class="list-inline list-unstyled">
+              <li><span><strong>Category : </strong>{{post.CategoryName}}</span></li>
+              <li>&nbsp;|&nbsp;</li>
+              <li><span><strong>CreatedDate : </strong>{{post.CreatedDate}}</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <br>
+      <br>      
+    </div>  
+  </div>
+  

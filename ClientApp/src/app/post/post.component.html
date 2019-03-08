@@ -1,0 +1,53 @@
+<div class="jumbtron">
+  <div class="containerfluid">  
+    <div class="row">
+      <form #postForm="ngForm" class="needs-validation" (ngSubmit)="postAQuestion(postForm)">
+        <div class="row">
+           
+          <div class="col-md-12 mb-3 form-group">
+              <h2 class="page-header">Post a new Question : </h2>
+            <label for="firstName">Title</label>
+            <input type="text" class="form-control" id="title" name="Title" placeholder="" value="" required size="200"  [(ngModel)]="post.Title" autofocus>
+            <div class="invalid-feedback">
+              Valid title is required.
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 mb-3 form-group">
+            <label for="lastName">description</label>
+            <textarea class="form-control" id="description" name="Description" placeholder="" value="" required rows="5" cols="20" [(ngModel)]="post.Description"></textarea>
+            <div class="invalid-feedback">
+              Valid description is required.
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3 form-group">
+            <select #selectCategory (blur)="validateCategory(category.value)" (change)="validateCategory(category.value)" #category="ngModel" [(ngModel)]="categories.CategoryName" name="category" [class.is-invalid]="categoryStatus && category.touched" class="custom-select">
+              <option value="Select Category"> Select Category </option>
+              <option *ngFor="let category of categories" value={{category.CategoryId}}>{{category.CategoryName}}</option>
+            </select>
+            <small class="text-danger" [class.d-none]="!categoryStatus || category.untouched">Please select a Category</small>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-12 btn-group mr-2 float-right">
+            <div class="btn-group mr-2 float-right">
+              <button class="btn btn-lg btn-primary " type="submit">Post a Question</button>
+            </div>
+            <div class="btn-group mr-2 float-right">
+              <button class="btn btn-lg btn-primary " type="reset" (click)="clearAllItems()">Reset</button>
+            </div>
+            <!-- <div class="btn-group mr-2 float-right">
+              <button class="btn btn-lg btn-primary" type="button" (click)="redirectToDashboard()">Cancel</button>
+            </div> -->
+          </div>
+        </div>
+    
+      </form>  
+  </div>
+</div>
+<br>
+<br>

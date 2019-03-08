@@ -1,0 +1,182 @@
+/* You can add global styles to this file, and also import other style files */
+
+body{
+  min-height: 100%;
+}
+
+.margin100px
+{
+  margin:100px;
+}
+.textCenter
+{
+  text-align: center;
+}
+.fontSize16px{
+    font-size: 16px;
+}
+span.profile{
+    font-size: 13px;
+    margin-right: 10px;
+}
+
+.list-group
+{
+  width:70%;
+}
+
+.btnLogout .btnGoTo{
+  float: right;
+  margin-right: 16px;
+}
+
+.btn-info-white
+{
+  background-color: white;
+}
+
+.colorSilver
+{
+  color: silver;
+}
+.bg-light
+{
+  background-color: #3665a9fc !important;
+}
+.bg-green{
+  background-color: green;
+}
+
+.bg-orange{
+  background-color: orange;
+}
+
+.signInContainer
+{
+  width: 33%;
+  margin: auto;
+}
+
+.logoTitle, .logoTitle:hover
+{
+  font-family: sans-serif;
+  color:white;
+}
+.title
+{
+  font-family: sans-serif;
+  color: #12467c;
+}
+
+.marginLeft16em{
+  margin-left:16em;
+}
+
+.marginRight16em{
+  margin-right:16em;
+}
+
+a{
+  color:inherit;
+  
+}
+
+.registrationMargin
+{  
+  width: 50%;
+  margin: auto;
+  }
+
+.width100percent
+{
+  width:100%;
+}
+
+.clear-both
+{
+  clear:both;
+}
+
+.btn-group
+{
+  display: inline-block;
+}
+
+.customWidth16p
+{
+  width: 16%;
+  white-space: nowrap;
+  margin: auto;
+}
+.border-bottom
+{
+  border-bottom: dotted 2px silver;
+}
+
+.mt-10
+{
+  margin-top:10px;
+}
+
+.mt-15
+{
+  margin-top:15px;
+}
+
+.mr-10
+{
+  margin-right: 10px;
+}
+.ml-10
+{
+  margin-left: 10px;
+}
+.display-block
+{
+  display: block !important;
+}
+
+.list-inline
+{
+  display: inline-flex;
+}
+
+a.underscoreOnHover:hover
+{
+  text-decoration: underline;
+  cursor: pointer;
+
+}
+.colorRed
+{
+  color: red;
+}
+
+li:hover{
+  cursor: pointer;
+}
+
+.width95Percent
+{
+  width:95%;  
+}
+.marginAuto{
+  margin: auto;
+}
+
+.backGradient{
+  height: 50px;
+  background-image: linear-gradient(to left, rgb(54, 101, 169,0),rgb(54, 101, 169,1));
+  color: white;  
+  padding: 9px;
+}
+
+.bold
+{
+  font-weight: bold;
+}
+
+.color-Red
+{
+  color:red !important;
+}

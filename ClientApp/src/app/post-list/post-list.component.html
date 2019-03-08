@@ -1,0 +1,90 @@
+<div class="jumbtron">
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" data-toggle="tooltip" title="Go to Dashboard"  routerLink="/dashboard">
+          <img src="assets/img/ces_logo.png" width="30" height="30" class="d-inline-block align-top"
+            alt="CES Employee Forum">
+          <strong class="logoTitle">Employee Forum</strong>
+        </a>    
+        <form class="form-inline my-2 my-lg-0">
+          <p class="fontSize16px mr-10 mt-15 "><span class="colorSilver">Welcome </span><a data-toggle="tooltip" title="Employee Details"  routerLink="/empdetail/{{employee.EmployeeId}}" class="logoTitle"><strong>{{employee.UserName | uppercase}}</strong></a><br>        
+          </p>
+          <a class="btn btn-info-white my-2 my-sm-0 btnLogout" (click)="logout()">Logout</a>    
+        </form>
+      </nav>  
+      <br><br>  
+  <div class="containerfluid width95Percent marginAuto">
+    <div class="row display-block clear-both">
+      <div class="col-md-8 m-auto">
+        <form #postForm="ngForm" class="needs-validation" (ngSubmit)="postAQuestion(postForm)" novalidate>
+          <div class="row">
+            <div class="col-md-12 mb-3 form-group">
+              <h4 class="page-header backGradient">Post a new Question : </h4>
+              <label for="firstName"><strong>Title</strong><span class="colorRed">*</span></label>
+              <input type="text" class="form-control" id="title" name="Title" placeholder="" value="" required #title="ngModel"
+                size="200" [(ngModel)]="post.Title" [class.is-invalid]="title.invalid && title.touched">
+                <div *ngIf="title.errors && (title.invalid && title.touched)">
+                    <small class="text-danger" *ngIf="title.errors.required">Title is required</small>
+                  </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 mb-3 form-group">
+              <label for="lastName"><strong>Description</strong><span class="colorRed">*</span></label>
+              <textarea class="form-control" id="description" name="Description" placeholder="" value="" required #description="ngModel"
+                rows="5" cols="20" [(ngModel)]="post.Description" [class.is-invalid]="description.invalid && description.touched"></textarea>
+                <div *ngIf="description.errors && (description.invalid && description.touched)">
+                    <small class="text-danger" *ngIf="description.errors.required">Description is required</small>
+                  </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 mb-3 form-group">
+                <label for="lastName"><strong>Category</strong><span class="colorRed">*</span></label>
+              <select #selectCategory (blur)="validateCategory(category.value)"
+                (change)="validateCategory(category.value)" #category="ngModel" [(ngModel)]="categories.CategoryName"
+                name="category" [class.is-invalid]="categoryStatus && category.touched" class="custom-select">
+                <option value="Select Category" selected="selected"> Select Category </option>
+                <option *ngFor="let category of categories" value={{category.CategoryId}}>{{category.CategoryName}}
+                </option>
+              </select>
+              <small class="text-danger" [class.d-none]="!categoryStatus || category.untouched">Please select a
+                Category</small>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12 mr-2 float-right">
+              <div class="btn-group mr-2 float-right">
+                <button [disabled]="postForm.form.invalid" class="btn btn-lg btn-primary " type="submit" id="buttonPost">Post a Question</button>
+              </div>
+              <div class="btn-group mr-2 float-right">
+                <button class="btn btn-lg btn-primary " type="reset" (click)="clearAllItems(postForm)" id="buttonReset">Reset</button>
+              </div>
+            </div>
+          </div>
+        </form>
+        <br>
+      </div>
+    </div>
+    <div class="row display-block clear-both">
+      <div class="col-md-8 m-auto">
+        <h4 class="page-header backGradient">My Posts : </h4>
+        <div class="media" *ngFor="let post of posts">
+          <div class="media-body border-bottom">
+            <h4 class="media-heading mt-10"><a href="#"
+                routerLink='/postdetail/{{post.PostId}}'>{{post.Title | titlecase}}</a></h4>
+            <p class="text-right">By {{post.FirstName}}</p>
+            <p>{{post.Description}}</p>
+            <ul class="list-inline list-unstyled">
+              <li><span><strong>Category : </strong>{{post.CategoryName}}</span></li>
+              <li>&nbsp;|&nbsp;</li>
+              <li><span><strong>CreatedDate : </strong>{{post.CreatedDate}}</span></li>
+              <li>&nbsp;|&nbsp;</li>
+              <li class="float-right"><a href=# (click)="EditPost(4)">Edit</a></li>
+            </ul>
+          </div>
+        </div>
+       </div>
+    </div>
+  </div>
+</div>

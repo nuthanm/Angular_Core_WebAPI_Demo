@@ -1,0 +1,121 @@
+<div class="py-5 text-center">
+  <img src="/assets/img/ces_logo.png" alt="" width="72" height="72">
+  <h1 class="h3 mb-3 font-weight-normal"><strong Class="title">Employee Forum</strong></h1>
+</div>
+
+<div class="row registrationMargin">
+  <div class="col-md-12 order-md-1">
+    <h4 class="mb-3">Registration Details</h4>
+    <form #employeeDetails="ngForm" class="needs-validation" (ngSubmit)="onSubmit(employeeDetails)" novalidate>
+      <!-- {{employeeDetails.form.valid}} -->
+      <!-- {{ employeeDetails.value | json }}
+      {{ employee |json}} -->
+      <div class="row">
+        <div class="col-md-6 mb-3 form-group">
+          <label for="firstName">First name<span class="colorRed">*</span></label>
+          <input type="text" class="form-control" #firstName="ngModel" [class.is-invalid]="firstName.invalid && firstName.touched"
+            id="firstName" name="firstName" [(ngModel)]="employee.FirstName" placeholder="First Name" value="" required>
+          <div class="invalid-feedback">
+            Valid first name is required.
+          </div>
+          <!-- {{name.className}} -->
+        </div>
+        <div class="col-md-6 mb-3 form-group">
+          <label for="lastName">Last name<span class="colorRed">*</span></label>
+          <input type="text" class="form-control" id="lastName" name="lastName" #lastName="ngModel" [(ngModel)]="employee.LastName"
+            placeholder="Last Name" value="" [class.is-invalid]="lastName.invalid && lastName.touched" required>
+          <div class="invalid-feedback">
+            Valid last name is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3 form-group">
+          <label for="username">Username<span class="colorRed">*</span></label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text">@</span>
+            </div>
+            <input #userName type="text" class="form-control" id="username" name="userName" [(ngModel)]="employee.UserName"
+              placeholder="Username" required (blur) = "CheckUserName(userName.value)">
+            </div>
+            <div [ngSwitch]=isExists>
+              <div *ngSwitchCase="true" class="alert alert-warning">User Name is already exists</div>
+              <div *ngSwitchCase="false" class="alert alert-success">User Name is available</div>
+            </div>            
+        </div>
+
+
+        <div class="col-md-6 mb-3 form-group">
+          <label for="inputEmail">Email address<span class="colorRed">*</span></label>
+          <input type="email" id="inputEmail" class="form-control" #inputEmail="ngModel"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" [(ngModel)]="employee.Email"
+            [class.is-invalid]="inputEmail.invalid && inputEmail.touched" name="email" placeholder="Email address"
+            required>
+          <div *ngIf="inputEmail.errors && (inputEmail.invalid && inputEmail.touched)">
+            <small class="text-danger" *ngIf="inputEmail.errors.required">Email is required</small>
+            <small class="text-danger" *ngIf="inputEmail.errors.pattern">Please enter valid email</small>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3 form-group">
+          <label for="inputMobileNo">Mobile No<span class="colorRed">*</span></label>
+          <input type="text" id="inputMobileNo" class="form-control" name="mobileNo" #inputMobileNo="ngModel" [(ngModel)]="employee.MobileNo" maxlength="10"
+            placeholder="Mobile Number" required [class.is-invalid]="inputMobileNo.invalid && inputMobileNo.touched">
+            <div *ngIf="inputMobileNo.errors && (inputMobileNo.invalid && inputMobileNo.touched)">
+                <small class="text-danger" *ngIf="inputMobileNo.errors.required">Mobile Number is required</small>
+                <small class="text-danger" *ngIf="inputMobileNo.errors.pattern">Please enter valid Mobile Number</small>
+              </div>
+        </div>
+        <div class="col-md-6 mg-3">
+          <label for="inputGender">Gender<span class="colorRed">*</span></label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="inputGender" [(ngModel)]="employee.Gender" value="M">
+            <label class="form-check-label">Male</label>
+          </div>
+
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="inputGender" [(ngModel)]="employee.Gender"
+              value="F">
+            <label class="form-check-label">Female</label>
+          </div>
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3 form-group">
+          <label for="inputPassword">Password<span class="colorRed">*</span></label>
+          <input type="password" id="inputPassword" class="form-control" name="password" #inputPassword="ngModel" [(ngModel)]="employee.Password" maxlength="6" pattern="^[a-zA-Z]\w{3,8}$"
+            placeholder="Password" required>
+            <div *ngIf="inputPassword.errors && (inputPassword.invalid && inputPassword.touched)">
+                <small class="text-danger" *ngIf="inputPassword.errors.required">Password is required</small>
+                <small class="text-danger" *ngIf="inputPassword.errors.pattern">Please enter valid Password</small>
+              </div>     
+        </div>
+         
+      </div>
+      <div class="row">
+        <div class="col-md-12 mr-2 float-right">
+          <div class="btn-group mr-2 float-right">
+            <button [disabled]="employeeDetails.form.invalid" class="btn btn-lg btn-primary" type="submit" id="buttonRegister">Register</button>
+          </div>
+          <div class="btn-group mr-2 float-right">
+            <button class="btn btn-lg btn-primary" type="reset" (click)="clearAllItems(employeeDetails)"id="buttonReset">Reset</button>
+          </div>
+          <div class="btn-group mr-2 float-right">
+            <button class="btn btn-lg btn-primary" type="button" (click)="redirectToLogin()" id="buttonCancel">Cancel</button>
+          </div>
+        </div>
+      </div>
+      <br>
+      <div *ngIf="message" class="alert alert-success">{{message}}.</div>
+      <div class="row">
+        <p class="col-md-12 mt-3 mb-3 text-muted text-center clear-both">Already User : <a routerLink="/"
+            class="title"><strong>Login
+              Here</strong></a></p>
+      </div>
+    </form>
+  </div>
+</div>

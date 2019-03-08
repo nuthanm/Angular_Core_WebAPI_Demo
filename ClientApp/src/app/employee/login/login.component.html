@@ -1,0 +1,38 @@
+<form #loginForm="ngForm" class="form-signin margin100px" novalidate (ngSubmit)="authenticate(loginForm)">
+  <div class="text-center mb-4 signInContainer">
+    <img src="/assets/img/ces_logo.png" alt="" width="72" height="72">
+    <h1 class="h3 mb-3 font-weight-normal"><strong Class="title">{{appTitle}}</strong></h1>
+  </div>
+  <div class="form-label-group mb-3 signInContainer form-group">
+    <label for="inputUserName">User Name<span class="colorRed">*</span></label>
+    <input type="text" id="inputUserName" class="form-control" #inputUserName="ngModel" [(ngModel)]="employee.username"
+      [class.is-invalid]="inputUserName.invalid && inputUserName.touched" name="UserName" placeholder="User Name"
+      required>
+    <div *ngIf="inputUserName.errors && (inputUserName.invalid && inputUserName.touched)">
+      <small class="text-danger" *ngIf="inputUserName.errors.required">User name is required</small>
+      <small class="text-danger" *ngIf="inputUserName.errors.pattern">Please enter valid username</small>
+    </div>
+  </div>
+
+  <div class="form-label-group mb-3 signInContainer form-group">
+    <label for="inputPassword">Password<span class="colorRed">*</span></label>
+    <input type="password" id="inputPassword" class="form-control" #inputPassword="ngModel" maxlength="6"
+      pattern="^[a-zA-Z]\w{3,8}$" [(ngModel)]="employee.Password"
+      [class.is-invalid]="inputPassword.invalid && inputPassword.touched" placeholder="Password" name="Password"
+      required>
+    <div class="invalid-feedback">
+      Valid password is required.
+    </div>
+    <h6>Sample Password(s) are : <em>n29Ab,A09bN</em></h6>
+  </div>
+   <button [disabled]="loginForm.form.invalid" class="btn btn-lg btn-primary btn-block signInContainer" type="submit"
+    id="buttonSignin">Sign in</button>
+    <div class="row">
+      <div class="col-md-12">
+          <div *ngIf="invalidLoginShowMessage" class="alert alert-danger customWidth16p">{{invalidLoginShowMessage}}</div>
+      </div>
+    </div>
+  <p class="mt-3 mb-3 text-center signInContainer">New Memeber : <a id="anchorRegister" (click)="gotoRegister()"
+      class="title underscoreOnHover"><strong>Register Here</strong></a></p>
+  <p class="mt-3 mb-3 text-muted text-center signInContainer">&copy; {{ currentYear }}</p>
+</form>

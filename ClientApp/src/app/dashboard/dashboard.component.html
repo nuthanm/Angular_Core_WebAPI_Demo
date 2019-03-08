@@ -1,0 +1,37 @@
+<div class="jumbtron">
+
+  <nav class="navbar navbar-light bg-light">
+    <a class="navbar-brand" data-toggle="tooltip" title="Go to Dashboard"  routerLink="/dashboard">
+      <img src="assets/img/ces_logo.png" width="30" height="30" class="d-inline-block align-top"
+        alt="CES Employee Forum">
+      <strong class="logoTitle">Employee Forum</strong>
+    </a>    
+    <form class="form-inline my-2 my-lg-0">
+      <p class="fontSize16px mr-10 mt-15 "><span class="colorSilver">Welcome </span><a data-toggle="tooltip" title="Employee Details" routerLink="/empdetail/{{employee.EmployeeId}}" class="logoTitle"><strong>{{employee.UserName | uppercase}}</strong></a><br>        
+      </p>
+      <a class="btn btn-info-white my-2 my-sm-0 btnLogout" (click)="logout()">Logout</a>    
+    </form>
+  </nav>
+  <br>
+  <br>  
+  <div class="containerfluid width95Percent marginAuto">  
+    <div class="row">
+      <div class="col-md-6">
+        <canvas id="barChart"></canvas>
+      </div>
+
+      <div class="col-md-6">
+        <a class="btn btn-outline-primary my-2 my-sm-0" routerLink="/post-list"><i class="fas fa-plus"></i> Go to Posts</a>
+        <div class="my-3 py-3 ">
+         
+          <h2 class="display-5 ">{{employee.FirstName | titlecase}} Current Activities</h2>
+          <ul class="list-group" name="activity" *ngFor="let postActivity of postActivities">
+            <li (click)="onSelect(postActivity)"  class="list-group-item d-flex justify-content-between align-items-center">
+              {{postActivity.Activity}}
+              <span class="badge badge-primary badge-pill">{{postActivity.Count}}</span>
+            </li>            
+          </ul>
+        </div>
+      </div>
+    </div>  
+  </div>

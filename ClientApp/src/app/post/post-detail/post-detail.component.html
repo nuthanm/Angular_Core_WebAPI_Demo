@@ -1,0 +1,51 @@
+<div class="jumbtron">
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" data-toggle="tooltip" title="Go to Dashboard" routerLink="/dashboard">
+            <img src="assets/img/ces_logo.png" width="30" height="30" class="d-inline-block align-top"
+                alt="CES Employee Forum">
+            <strong class="logoTitle">Employee Forum</strong>
+        </a>
+        <form class="form-inline my-2 my-lg-0">
+            <p class="fontSize16px mr-10 mt-15 "><span class="colorSilver">Welcome </span><a data-toggle="tooltip"
+                    title="Employee Details" routerLink="/empdetail/{{employee.EmployeeId}}"
+                    class="logoTitle"><strong>{{employee.UserName | uppercase}}</strong></a><br>
+            </p>
+            <a class="btn btn-info-white my-2 my-sm-0 btnLogout" (click)="logout()">Logout</a>
+        </form>
+    </nav>
+    <br><br>
+    <div class="containerfluid width95Percent marginAuto">
+        <div class="row display-block clear-both">
+            <div class="col-md-8 m-auto">
+                <h4 class="page-header backGradient">Detailed Post : </h4>
+                <label for="title" class="bold">Title</label>
+                <p class="media-heading mt-10 border-bottom" id="title">{{post.Title| titlecase}}</p>
+                <label for="description " class="bold">Description</label>
+                <p id="description" class="border-bottom">{{post.Description}}</p>
+                <ul class="list-inline list-unstyled">
+                    <li><span><strong>Category : </strong>{{post.CategoryName}}</span></li>
+                    <li>&nbsp;|&nbsp;</li>
+                    <li><span><strong>CreatedDate : </strong>{{post.CreatedDate}}</span></li>
+                    <li>&nbsp;|&nbsp;</li>                   
+                    <li><strong>Bookmark :&nbsp; </strong>                        
+                        <i  [ngClass]="{
+                            'color-Red': BookMarkResult                            
+                          }" data-toggle="tooltip" title="Bookmark this Post" class="far fa-bookmark" (click)="BookmarkThisPost()"></i>
+                    </li>
+                    <li>&nbsp;|&nbsp;</li>
+                    <li><strong>Like : &nbsp; </strong><i  [ngClass]="{
+                        'color-Red': isLike                        
+                      }" data-toggle="tooltip" title="Like this post" class=" fa fa-heart-o" (click)="LikeThisPost()"></i></li>
+                </ul>                          
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 m-auto mr-2 float-right">
+                <div class="btn-group mr-2 float-right">
+                    <button class="btn btn-lg btn-primary " type="submit"
+                        id="buttonPost"><i class="fa fa-reply" aria-hidden="true"></i> Reply</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
